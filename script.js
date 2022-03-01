@@ -11,16 +11,16 @@ async function setup() {
     await Work.loadLanguage("eng")
     await Work.initialize("eng")
 
-    const canvas = document.createElement("canvas")
-    canvas.width = video.width
-    canvas.height = video.height
+    const canvass = document.createElement("canvas")
+    canvass.width = video.width
+    canvass.height = video.height
 
     document.addEventListener("keypress", async e => {
       if (e.code !== "Space") return
       canvas.getContext("2d").drawImage(video, 0, 0, video.width, video.height)
       const {
         data: { text },
-      } = await Work.recognize(canvas)
+      } = await Work.recognize(canvass)
 
       speechSynthesis.speak(
         new SpeechSynthesisUtterance(text.replace(/\s/g, " "))
